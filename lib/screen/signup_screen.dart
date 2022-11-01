@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram_clone/resources/auth_method.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../utils/colors.dart';
@@ -26,9 +27,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _usernameController.dispose();
   }
 
+  void selectedImage() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -54,7 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   bottom: -10,
                   left: 80,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: selectedImage,
                     icon: const Icon(Icons.add_a_photo),
                   ),
                 ),
@@ -97,9 +101,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
             //Button Login
             InkWell(
-              onTap: () {},
+              onTap: () async {
+                String res = await AuthMethods().signUpUser(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                  username: _usernameController.text,
+                  bio: _bioController.text,
+                );
+                print(res);
+              },
               child: Container(
-                child: const Text('Log in'),
+                child: const Text('Sign up'),
                 width: double.infinity,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(vertical: 12),
