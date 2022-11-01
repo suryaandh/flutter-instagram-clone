@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/resources/auth_method.dart';
+import 'package:flutter_instagram_clone/utils/utils.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../utils/colors.dart';
 import '../widget/text_input_field.dart';
@@ -17,6 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  Uint8List? _image;
 
   @override
   void dispose() {
@@ -27,7 +31,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _usernameController.dispose();
   }
 
-  void selectedImage() {}
+  void selectedImage() async {
+    Uint8List image = await pickImage(ImageSource.gallery);
+
+    setState(() {
+      _image = image;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +59,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
             //Circular widget to accept and show our selected file
             Stack(
               children: [
-                const CircleAvatar(
-                  radius: 64,
-                  backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1638803040283-7a5ffd48dad5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'),
-                ),
+                _image != null
+                    ? CircleAvatar(
+                        radius: 64,
+                        backgroundImage: MemoryImage(_image!),
+                      )
+                    : const CircleAvatar(
+                        radius: 64,
+                        backgroundImage: NetworkImage(
+                            'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'),
+                      ),
                 Positioned(
                   bottom: -10,
                   left: 80,
