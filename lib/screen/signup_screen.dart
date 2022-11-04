@@ -1,10 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/resources/auth_method.dart';
+import 'package:flutter_instagram_clone/screen/login_screen.dart';
 import 'package:flutter_instagram_clone/utils/utils.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../layout/mobile_layout.dart';
+import '../layout/responsive_layout.dart';
+import '../layout/web_layout.dart';
 import '../utils/colors.dart';
 import '../widget/text_input_field.dart';
 
@@ -40,6 +44,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
+  void navigateToLogin() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    );
+  }
+
   void signUpUser() async {
     setState(() {
       _isLoading = true;
@@ -57,6 +69,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     if (res != 'success') {
       showSnackBar(res, context);
+    } else {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebLayout(),
+            mobileScreenLayout: MobileLayout(),
+          ),
+        ),
+      );
     }
   }
 
@@ -168,10 +189,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: const Text("Don't have an account?"),
+                  child: const Text("Already have an account?"),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: navigateToLogin,
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: const Text(

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/resources/auth_method.dart';
+import 'package:flutter_instagram_clone/screen/home_screen.dart';
+import 'package:flutter_instagram_clone/screen/signup_screen.dart';
 import 'package:flutter_instagram_clone/utils/colors.dart';
 import 'package:flutter_instagram_clone/utils/utils.dart';
 import 'package:flutter_instagram_clone/widget/text_input_field.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../layout/mobile_layout.dart';
+import '../layout/responsive_layout.dart';
+import '../layout/web_layout.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -33,6 +39,14 @@ class _LoginScreenState extends State<LoginScreen> {
       password: _passwordController.text,
     );
     if (res == 'success') {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebLayout(),
+            mobileScreenLayout: MobileLayout(),
+          ),
+        ),
+      );
       //
     } else {
       //
@@ -41,6 +55,14 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  void navigateToSignUp() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => SignUpScreen(),
+      ),
+    );
   }
 
   @override
@@ -113,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Text("Don't have an account?"),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: navigateToSignUp,
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: const Text(
