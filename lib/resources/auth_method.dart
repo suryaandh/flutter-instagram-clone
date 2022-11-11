@@ -38,8 +38,8 @@ class AuthMethods {
 
         print(cred.user!.uid);
 
-        String photoUrl =
-            await StorageMethods().uploadImage('profilePics', file, false);
+        String photoUrl = await StorageMethods()
+            .uploadImageToStorage('profilePics', file, false);
 
         //add user to database
         model.User user = model.User(
