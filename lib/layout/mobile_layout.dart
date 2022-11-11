@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/utils/colors.dart';
+import 'package:flutter_instagram_clone/utils/global_variabel.dart';
 
 class MobileLayout extends StatefulWidget {
   const MobileLayout({Key? key}) : super(key: key);
@@ -41,13 +42,7 @@ class _MobileLayoutState extends State<MobileLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        children: [
-          Text('feed'),
-          Text('a'),
-          Text(' v'),
-          Text('k'),
-          Text('k'),
-        ],
+        children: homeScreenItems,
         controller: pageController,
         onPageChanged: onPageChanged,
       ),
