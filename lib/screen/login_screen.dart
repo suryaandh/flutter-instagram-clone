@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/resources/auth_method.dart';
-import 'package:flutter_instagram_clone/screen/home_screen.dart';
 import 'package:flutter_instagram_clone/screen/signup_screen.dart';
 import 'package:flutter_instagram_clone/utils/colors.dart';
 import 'package:flutter_instagram_clone/utils/utils.dart';
