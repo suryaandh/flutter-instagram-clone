@@ -139,7 +139,7 @@ class _PostCardState extends State<PostCard> {
           Row(
             children: [
               LikeAniname(
-                isAntimating: widget.snap['likes'].contains(user!.uid),
+                isAntimating: widget.snap['likes'].contains(user.uid),
                 smallLike: true,
                 child: IconButton(
                   onPressed: () async {
