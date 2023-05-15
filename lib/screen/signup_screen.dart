@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'package:flutter_instagram_clone/resources/auth_method.dart';
 import 'package:flutter_instagram_clone/screen/login_screen.dart';
 import 'package:flutter_instagram_clone/utils/utils.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../layout/mobile_layout.dart';
 import '../layout/responsive_layout.dart';
